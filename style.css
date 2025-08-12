@@ -1,65 +1,90 @@
 body {
-      font-family: Arial, sans-serif;
-      background: #f3f3f3;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
+    background: #6ec9f5;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+}
 
-    .calculadora {
-      background: #ffffff;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    }
+.calculadora {
+    background: #a9a9a9;
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.4);
+    width: 280px;
+}
 
-    .pantalla {
-      width: 100%;
-      height: 50px;
-      margin-bottom: 10px;
-      font-size: 24px;
-      padding: 5px 10px;
-      text-align: right;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      background: #eaeaea;
-    }
+.pantalla {
+    background: #222;
+    color: #47e9f1;
+    font-size: 28px;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: right;
+    margin-bottom: 10px;
+    height: 40px;
+    overflow-x: auto;
+}
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    }
+.titulo {
+    text-align: center;
+    color: white;
+    background: #7a7a7a;
+    border-radius: 10px;
+    padding: 3px;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
 
-    td {
-      padding: 5px;
-    }
+.botones {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+}
 
-    button {
-      width: 100%;
-      padding: 15px;
-      font-size: 18px;
-      border: none;
-      border-radius: 5px;
-      background-color: #eee;
-      cursor: pointer;
-      transition: background-color 0.2s;
-    }
+button {
+    background: white;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
 
-    button:hover {
-      background-color: #dcdcdc;
-    }
+button:hover {
+    background: #ddd;
+}
 
-    .operador {
-      background-color: #ffcc00;
-    }
+.verde { background: #a7f1a7; }
+.amarillo { background: #f6f68f; }
 
-    .igual {
-      background-color: #00cc99;
-      color: #fff;
-    }
+.acciones-historial {
+    margin-top:10px;
+    display: flex;
+    justify-content: space-between;
+}
 
-    .clear {
-      background-color: #ff6666;
-      color: #fff;
-    }
+.historial-container {
+    background: #f0f0f0;
+    margin-top: 15px;
+    padding: 10px;
+    width: 280px;
+    border-radius: 10px;
+    display: none;
+}
+.historial-container h3 {
+    margin: 0;
+    font-size: 16px;
+}
+.historial-lista {
+    max-height: 150px;
+    overflow-y: auto;
+    margin-top: 5px;
+}
+.historial-lista div {
+    border-bottom: 1px solid #ccc;
+    padding: 3px;
+    font-size: 14px;
+}

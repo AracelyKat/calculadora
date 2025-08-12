@@ -1,46 +1,59 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Calculadora Básica</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>Calculadora con Historial</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <div class="calculadora">
-    <div class="pantalla" id="resultado">0</div>
-    <table>
-      <tr>
-        <td><button class="clear">C</button></td>
-        <td><button class="operador">/</button></td>
-        <td><button class="operador">*</button></td>
-        <td><button class="operador">-</button></td>
-      </tr>
-      <tr>
-        <td><button>7</button></td>
-        <td><button>8</button></td>
-        <td><button>9</button></td>
-        <td><button class="operador">+</button></td>
-      </tr>
-      <tr>
-        <td><button>4</button></td>
-        <td><button>5</button></td>
-        <td><button>6</button></td>
-        <td rowspan="2"><button class="igual" style="height: 100%;">=</button></td>
-      </tr>
-      <tr>
-        <td><button>1</button></td>
-        <td><button>2</button></td>
-        <td><button>3</button></td>
-      </tr>
-      <tr>
-        <td colspan="2"><button style="width: 100%;">0</button></td>
-        <td><button>.</button></td>
-        <td><button class="operador">%</button></td>
-      </tr>
-    </table>
-  </div>
+<div class="calculadora">
+    <div id="pantalla" class="pantalla">0</div>
+    <div class="titulo">FUNCIONES DIRECTAS</div>
 
+    <div class="botones">
+        <button onclick="operar('x2')">x²</button>
+        <button onclick="operar('sqrt')">√x</button>
+        <button onclick="operar('exp')">exp</button>
+        <button onclick="operar('log')">log</button>
+
+        <button onclick="operar('sin')">sin</button>
+        <button onclick="operar('cos')">cos</button>
+        <button onclick="operar('tan')">tan</button>
+        <button onclick="agregar('+')">+</button>
+
+        <button onclick="agregar('7')">7</button>
+        <button onclick="agregar('8')">8</button>
+        <button onclick="agregar('9')">9</button>
+        <button onclick="agregar('-')">-</button>
+
+        <button onclick="agregar('4')">4</button>
+        <button onclick="agregar('5')">5</button>
+        <button onclick="agregar('6')">6</button>
+        <button onclick="agregar('*')">*</button>
+
+        <button onclick="agregar('1')">1</button>
+        <button onclick="agregar('2')">2</button>
+        <button onclick="agregar('3')">3</button>
+        <button onclick="agregar('/')">/</button>
+
+        <button onclick="agregar('0')">0</button>
+        <button onclick="agregar('.')">.</button>
+        <button class="verde" onclick="borrar()">C</button>
+        <button class="amarillo" onclick="calcular()">=</button>
+    </div>
+
+    <div class="acciones-historial">
+        <button onclick="toggleHistorial()">Ver historial</button>
+        <button onclick="limpiarHistorial()">Limpiar historial</button>
+    </div>
+</div>
+
+<div id="historial" class="historial-container">
+    <h3>Historial</h3>
+    <div id="listaHistorial" class="historial-lista"></div>
+</div>
+
+<script src="function.js"></script>
 </body>
 </html>
