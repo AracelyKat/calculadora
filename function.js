@@ -43,14 +43,16 @@ function guardarHistorial(operacion) {
 }
 
 function renderHistorial() {
-    let cont = document.getElementById("listaHistorial");
-    cont.innerHTML = "";
-    historial.slice().reverse().forEach(op => {
-        let div = document.createElement("div");
-        div.textContent = op;
-        cont.appendChild(div);
-    });
+    let contenedor = document.getElementById("listaHistorial");
+    contenedor.innerHTML = "";
+    let historialInvertido = historial.slice().reverse();
+    for (let i = 0; i < historialInvertido.length; i++) {
+        let elemento = document.createElement("div");
+        elemento.textContent = historialInvertido[i];
+        contenedor.appendChild(elemento);
+    }
 }
+
 
 function toggleHistorial() {
     let cont = document.getElementById("historial");
