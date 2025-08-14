@@ -1,65 +1,74 @@
-let pantalla = document.getElementById("pantalla");
-let historial = [];
+let display = document.getElementById("screen");
+let historyList = [];
 
-function agregar(valor) {
-    if (pantalla.textContent === "0") pantalla.textContent = valor;
-    else pantalla.textContent += valor;
+window.addEventListener("DOMContentLoaded", () => {
+    let storedHistory = localStorage.getItem("history");
+    if (storedHistory) {
+        historyList = JSON.parse(storedHistory);
+        renderHistory();
+    }
+});
+
+function addValue(value) {
+    if (display.textContent === "0") display.textContent = value;
+    else display.textContent += value;
 }
 
-function borrar() {
-    pantalla.textContent = "0";
+function clearDisplay() {
+    display.textContent = "0";
 }
 
-function calcular() {
+function calculate() {
     try {
-        let expresion = pantalla.textContent;
-        let resultado = eval(expresion);
-        pantalla.textContent = resultado;
-        guardarHistorial(expresion + " = " + resultado);
+        let expression = display.textContent;
+        let result = eval(expression);
+        display.textContent = result;
+        saveHistory(expression + " = " + result);
     } catch (e) {
-        pantalla.textContent = "Error";
+        display.textContent = "Error";
     }
 }
 
-function operar(tipo) {
-    let val = parseFloat(pantalla.textContent);
-    let resultado;
-    switch(tipo) {
-        case 'x2': resultado = val ** 2; break;
-        case 'sqrt': resultado = Math.sqrt(val); break;
-        case 'exp': resultado = Math.exp(val); break;
-        case 'log': resultado = Math.log(val); break;
-        case 'sin': resultado = Math.sin(val); break;
-        case 'cos': resultado = Math.cos(val); break;
-        case 'tan': resultado = Math.tan(val); break;
+function operate(type) {
+    let value = parseFloat(display.textContent);
+    let result;
+    switch(type) {
+        case 'x2': result = value ** 2; break;
+        case 'sqrt': result = Math.sqrt(value); break;
+        case 'exp': result = Math.exp(value); break;
+        case 'log': result = Math.log(value); break;
+        case 'sin': result = Math.sin(value); break;
+        case 'cos': result = Math.cos(value); break;
+        case 'tan': result = Math.tan(value); break;
     }
-    pantalla.textContent = resultado;
-    guardarHistorial(tipo + "(" + val + ") = " + resultado);
+    display.textContent = result;
+    saveHistory(`${type}(${value}) = ${result}`);
 }
 
-function guardarHistorial(operacion) {
-    historial.push(operacion);
-    renderHistorial();
+function saveHistory(operation) {
+    historyList.push(operation);
+    localStorage.setItem("history", JSON.stringify(historyList));
+    renderHistory();
 }
 
-function renderHistorial() {
-    let contenedor = document.getElementById("listaHistorial");
-    contenedor.innerHTML = "";
-    let historialInvertido = historial.slice().reverse();
-    for (let i = 0; i < historialInvertido.length; i++) {
-        let elemento = document.createElement("div");
-        elemento.textContent = historialInvertido[i];
-        contenedor.appendChild(elemento);
+function renderHistory() {
+    let container = document.getElementById("listaHistorial");
+    container.innerHTML = "";
+    let reversedHistory = historyList.slice().reverse();
+    for (let i = 0; i < reversedHistory.length; i++) {
+        let itemElement = document.createElement("div");
+        itemElement.textContent = reversedHistory[i];
+        container.appendChild(itemElement);
     }
 }
 
-
-function toggleHistorial() {
-    let cont = document.getElementById("historial");
-    cont.style.display = (cont.style.display === "none" || cont.style.display === "") ? "block" : "none";
+function toggleHistory() {
+    let histContainer = document.getElementById("historial"); // id corregido
+    histContainer.style.display = (histContainer.style.display === "none" || histContainer.style.display === "") ? "block" : "none";
 }
 
-function limpiarHistorial() {
-    historial = [];
-    renderHistorial();
+function clearHistory() {
+    historyList = [];
+    localStorage.removeItem("history");
+    renderHistory();
 }
